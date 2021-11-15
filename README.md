@@ -58,4 +58,4 @@ The dataframe `tssb` contains (TS name, window size, CPs, TS) rows and can now b
 >>>   print(f"Time Series: {ts_name}: True Change Points: {cps}, Found Change Points: {found_cps}, Score: {score}")
 ```
 
-In a similar fashion, you can evaluate your TSS algorithm and compare results. For more details, see the example <a href="https://github.com/ermshaua/preon/tree/main/time-series-segmentation-benchmark/tssb/notebooks">notebooks</a>.
+In a similar fashion, you can evaluate your TSS algorithm and compare results. For more details, see the example <a href="https://github.com/ermshaua/time-series-segmentation-benchmark/tree/main/tssb/notebooks">notebooks</a>.
