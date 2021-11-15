@@ -1,0 +1,9 @@
+daproli
+matplotlib
+numpy
+orange3
+pandas
+scikit-learn
+seaborn
+tqdm
+setuptools
