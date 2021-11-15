@@ -19,7 +19,7 @@ If you use the TSSB in your scientific publication, we would appreciate the foll
 
 ## Results
 
-We have evaluated multiple time series segmentation algorithms using the TSSB. The following tables summarises the mean relative CP distance error (smaller is better) and the corresponding mean ranks. Evaluation details are in the <a target="_blank" href="https://dl.acm.org/doi/abs/10.1145/3459637.3482240">paper</a>. The raw result sheet and an evaluation notebook are in the <a target="_blank" href="https://github.com/ermshaua/preon/tree/main/time-series-segmentation-benchmark/tssb/notebooks">notebooks</a> folder.
+We have evaluated multiple time series segmentation algorithms using the TSSB. The following tables summarises the mean relative CP distance error (smaller is better) and the corresponding mean ranks. Evaluation details are in the <a target="_blank" href="https://dl.acm.org/doi/abs/10.1145/3459637.3482240">paper</a>. The raw result sheet and an evaluation notebook are in the <a target="_blank" href="https://github.com/ermshaua/time-series-segmentation-benchmark/tree/main/tssb/notebooks">notebooks</a> folder.
 
 | Segmentation Algorithm | Mean Error | Mean Rank | Wins & Ties |
 | ---------------------- | ---------- | --------- | ---------
