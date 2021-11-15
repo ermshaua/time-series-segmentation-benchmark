@@ -55,7 +55,7 @@ The dataframe `tssb` contains (TS name, window size, CPs, TS) rows and can now b
 >>> for _, (ts_name, window_size, cps, ts) in tssb.iterrows():
 >>>   found_cps = ClaSPSegmentation(window_size, n_cps=len(cps)).fit_predict(ts)
 >>>   score = relative_change_points_distance(cps, found_cps, ts.shape[0])
->>>   print(f"Time Series: {ts_name}: True Change Points: {cps}, Found Change Points: {found_cps}, Score: {score}")
+>>>   print(f"Time Series: {ts_name}: True Change Points: {cps}, Found Change Points: {found_cps.tolist()}, Score: {score}")
 ```
 
 In a similar fashion, you can evaluate your TSS algorithm and compare results. For more details, see the example <a href="https://github.com/ermshaua/time-series-segmentation-benchmark/tree/main/tssb/notebooks">notebooks</a>.
