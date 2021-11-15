@@ -59,3 +59,13 @@ The dataframe `tssb` contains (TS name, window size, CPs, TS) rows and can now b
 ```
 
 In a similar fashion, you can evaluate your TSS algorithm and compare results. For more details, see the example <a href="https://github.com/ermshaua/time-series-segmentation-benchmark/tree/main/tssb/notebooks">notebooks</a>.
+
+## Visualizations
+
+See the following example TS to get an overview of the TSSB. You can find more images in the <a href="https://github.com/ermshaua/time-series-segmentation-benchmark/tree/main/tssb/notebooks">visualizations</a> folder.
+
+![image](tssb/visualizations/ArrowHead.png)
+
+![image](tssb/visualizations/InlineSkate.png)
+
+![image](tssb/visualizations/Plane.png)
