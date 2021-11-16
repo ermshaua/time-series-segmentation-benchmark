@@ -1,5 +1,7 @@
 # Time Series Segmentation Benchmark (TSSB)
-This repository contains the time series segmentation benchmark (TSSB). It currently contains 66 annotated time series (TS) with 2-7 segments. Each TS is constructed from one of the <a target="_blank" href="http://timeseriesclassification.com/">UEA & UCR time series classification</a> datasets. We group TS by label and concatenate them to create segments with distinctive temporal patterns and statistical properties. We annotate the offsets at which we concatenated the segments as change points (CPs). Addtionally, we apply resampling to control the dataset resolution and add approximate, hand-selected window sizes that are able to capture temporal patterns.   
+The problem of time series segmentation (TSS) is to find a meaningful segmentation of a time series (TS) that captures a data-generating process with distinct states and transitions. We consider a segmentation meaningful, if the change points (CPs) between two consecutive segments correspond to state transitions in the associated process. 
+
+This repository contains the time series segmentation benchmark (TSSB). It currently contains 66 annotated TS with 2-7 segments. Each TS is constructed from one of the <a target="_blank" href="http://timeseriesclassification.com/">UEA & UCR time series classification</a> datasets. We group TS by label and concatenate them to create segments with distinctive temporal patterns and statistical properties. We annotate the offsets at which we concatenated the segments as CPs. Addtionally, we apply resampling to control the dataset resolution and add approximate, hand-selected window sizes that are able to capture temporal patterns.   
 
 ## Installation
 You can install the TSSB with PyPi:
