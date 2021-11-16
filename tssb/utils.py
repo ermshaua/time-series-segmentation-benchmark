@@ -8,6 +8,16 @@ from sklearn.metrics.pairwise import paired_euclidean_distances
 
 
 def load_time_series_segmentation_datasets(names=None):
+    '''
+    Loads and parses the TSSB dataset as a pandas dataframe.
+    Parameters
+    -----------
+    :param names: dataset names to load, default: all
+    :return: a pandas dataframe with (TS name, window size, CPs, TS) rows
+    Examples
+    -----------
+    >>> tssb = load_time_series_segmentation_datasets()
+    '''
     desc_filename = os.path.join(ABS_PATH, "datasets", "desc.txt")
     desc_file = []
 
@@ -29,7 +39,19 @@ def load_time_series_segmentation_datasets(names=None):
     return pd.DataFrame.from_records(df, columns=["name", "window_size", "change points", "time_series"])
 
 
-def relative_change_points_distance(cps_true, cps_pred, ts_len):
+def relative_change_point_distance(cps_true, cps_pred, ts_len):
+    '''
+    Calculates the relative CP distance between ground truth and predicted change points.
+    Parameters
+    -----------
+    :param cps_true: an array of true change point positions
+    :param cps_pred: an array of predicted change point positions
+    :param ts_len: the length of the associated time series
+    :return: relative distance between cps_true and cps_pred considering ts_len
+    Examples
+    -----------
+    >>> score = relative_change_point_distance(cps, found_cps, ts.shape[0])
+    '''
     assert len(cps_true) == len(cps_pred), "true/predicted cps must have the same length."
     differences = 0
 

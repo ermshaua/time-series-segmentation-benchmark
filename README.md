@@ -35,7 +35,7 @@ We have evaluated multiple time series segmentation algorithms using the TSSB. T
 Let's first import methods to load TS from the benchmark and to evaluate TSS algorithms. As an example, we also import our segmentation algorithm ClaSP from <a target="_blank" href="https://github.com/alan-turing-institute/sktime/">sktime</a>. 
 
 ```python3
->>> from tssb.utils import load_time_series_segmentation_datasets, relative_change_points_distance
+>>> from tssb.utils import load_time_series_segmentation_datasets, relative_change_point_distance
 >>> from sktime.annotation.clasp import ClaSPSegmentation
 ```
 
@@ -56,7 +56,7 @@ The dataframe `tssb` contains (TS name, window size, CPs, TS) rows and can now b
 ```python3
 >>> for _, (ts_name, window_size, cps, ts) in tssb.iterrows():
 >>>   found_cps = ClaSPSegmentation(window_size, n_cps=len(cps)).fit_predict(ts)
->>>   score = relative_change_points_distance(cps, found_cps, ts.shape[0])
+>>>   score = relative_change_point_distance(cps, found_cps, ts.shape[0])
 >>>   print(f"Time Series: {ts_name}: True Change Points: {cps}, Found Change Points: {found_cps.tolist()}, Score: {score}")
 ```
 
