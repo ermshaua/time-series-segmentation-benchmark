@@ -21,7 +21,7 @@ If you use the TSSB in your scientific publication, we would appreciate the foll
 
 ## Results
 
-We have evaluated multiple time series segmentation algorithms using the TSSB. The following tables summarises the mean relative CP distance error (smaller is better) and the corresponding mean ranks. Evaluation details are in the <a target="_blank" href="https://dl.acm.org/doi/abs/10.1145/3459637.3482240">paper</a>. The raw result sheet and an evaluation notebook are in the <a target="_blank" href="https://github.com/ermshaua/time-series-segmentation-benchmark/tree/main/tssb/notebooks">notebooks</a> folder.
+We have evaluated multiple time series segmentation algorithms using the TSSB. The following table summarises the mean relative CP distance error (smaller is better) and the corresponding mean ranks. Evaluation details are in the <a target="_blank" href="https://dl.acm.org/doi/abs/10.1145/3459637.3482240">paper</a>. The raw result sheet and an evaluation notebook are in the <a target="_blank" href="https://github.com/ermshaua/time-series-segmentation-benchmark/tree/main/tssb/notebooks">notebooks</a> folder.
 
 | Segmentation Algorithm | Mean Error | Mean Rank | Wins & Ties |
 | ---------------------- | ---------- | --------- | ---------
@@ -32,7 +32,7 @@ We have evaluated multiple time series segmentation algorithms using the TSSB. T
 | BinSeg-L2              | 0.31853    | 4.9       | 0/66        |
 
 ## Basic Usage
-Let's first import methods to load TS from the benchmark and to evaluate TSS algorithms. As an example, We also import our segmentation algorithm ClaSP from <a target="_blank" href="https://github.com/alan-turing-institute/sktime/">sktime</a>. 
+Let's first import methods to load TS from the benchmark and to evaluate TSS algorithms. As an example, we also import our segmentation algorithm ClaSP from <a target="_blank" href="https://github.com/alan-turing-institute/sktime/">sktime</a>. 
 
 ```python3
 >>> from tssb.utils import load_time_series_segmentation_datasets, relative_change_points_distance
