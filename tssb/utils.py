@@ -78,7 +78,7 @@ def visualize_time_series(ts, ts_name=None, cps_true=None, cps_pred=None, fontsi
     Parameters
     -----------
     :param ts: an array of time series data points
-    :param ts: the time series name
+    :param ts_name: the time series name
     :param cps_true: an array of true change point positions
     :param cps_pred: an array of predicted change point positions
     :param fontsize: the font size used for displayed text
