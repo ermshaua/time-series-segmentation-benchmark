@@ -3,6 +3,11 @@ ABS_PATH = os.path.dirname(os.path.abspath(__file__))
 
 import numpy as np
 import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+sns.set_theme()
+sns.set_color_codes()
 
 from sklearn.metrics.pairwise import paired_euclidean_distances
 
@@ -65,3 +70,49 @@ def relative_change_point_distance(cps_true, cps_pred, ts_len):
         differences += np.abs(cp_pred-cp_true)
 
     return np.round(differences / (len(cps_true) * ts_len), 6)
+
+
+def visualize_time_series(ts, ts_name=None, cps_true=None, cps_pred=None, fontsize=18):
+    '''
+    Visualizes a time series and its predicted segmentation (if provided).
+    Parameters
+    -----------
+    :param ts: an array of time series data points
+    :param ts: the time series name
+    :param cps_true: an array of true change point positions
+    :param cps_pred: an array of predicted change point positions
+    :param fontsize: the font size used for displayed text
+    :return: a (Figure, Axes) tuple
+    Examples
+    -----------
+    >>> fig, ax = visualize_time_series(ts, ts_name, cps, found_cps)
+    '''
+    fig, ax = plt.subplots(1, figsize=(20, 5))
+
+    if cps_true is None:
+        cps_true = np.zeros(0)
+
+    if cps_pred is None:
+        cps_pred = np.zeros(0)
+
+    segments = [0] + cps_true.tolist() + [ts.shape[0]]
+
+    for idx in np.arange(0, len(segments) - 1):
+        ax.plot(np.arange(segments[idx], segments[idx + 1]), ts[segments[idx]:segments[idx + 1]])
+
+    for idx, cp in enumerate(cps_pred):
+        ax.axvline(x=cp, linewidth=5, color='black', label=f'Predicted Change Point' if idx == 0 else None)
+
+    if ts_name is not None:
+        ax.set_title(ts_name, fontsize=fontsize)
+
+    if cps_pred.shape[0] > 0:
+        ax.legend(prop={'size': fontsize})
+
+    for tick in ax.xaxis.get_major_ticks():
+        tick.label.set_fontsize(fontsize)
+
+    for tick in ax.yaxis.get_major_ticks():
+        tick.label.set_fontsize(fontsize)
+
+    return fig, ax

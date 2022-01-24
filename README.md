@@ -71,3 +71,14 @@ See the following example TS to get an overview of the TSSB. You can find more i
 ![image](tssb/visualizations/InlineSkate.png)
 
 ![image](tssb/visualizations/Plane.png)
+
+In order to create a visualization of your predicted segmentations, you can use the following code.
+
+```python3
+>>> import matplotlib.pyplot as plt
+>>> from tssb.utils import load_time_series_segmentation_datasets, relative_change_point_distance, visualize_time_series
+>>> fig, ax = visualize_time_series(ts, ts_name, cps, found_cps)
+>>> plt.show()
+```
+
+![image](tssb/plane_example_segmentation.png)
