@@ -3,13 +3,77 @@ ABS_PATH = os.path.dirname(os.path.abspath(__file__))
 
 import numpy as np
 import pandas as pd
+import daproli as dp
 import matplotlib.pyplot as plt
 import seaborn as sns
 
 sns.set_theme()
 sns.set_color_codes()
 
+from scipy.stats import zscore
 from sklearn.metrics.pairwise import paired_euclidean_distances
+
+
+def generate_time_series_segmentation_dataset(df, labels, resample_rate=1, label_cut=0):
+    '''
+    Generates a TSSB dataset from a sktime dataframe (with cols "dim_0" and "class_val").
+    Parameters
+    -----------
+    :param df: sktime dataset dataframe (must contain dim_0 and class_val cols)
+    :param labels: a list of (potentially cut) labels used to create the dataset (determines the segment order)
+    :param resample_rate: the number of data points that are mean-aggregated (controls the TS resolution)
+    :param label_cut: the number of cuts for a label (enables the use of sub-segments, possible values: 0, 1, 2)
+
+    :return: a tuple of TS and a CP np.array
+    Examples
+    -----------
+    >>> from sktime.utils.data_io import load_from_ucr_tsv_to_dataframe
+    >>> df = load_from_ucr_tsv_to_dataframe(os.path.join(DATA_PATH, "ArrowHead/ArrowHead_TRAIN.tsv"), return_separate_X_and_y=False)
+    >>> ts, cps = generate_time_series_segmentation_dataset(df, labels=[0,1], resample_rate=2)
+    '''
+    X_concat, y_concat = [], []
+
+    segment_splits = {
+        1: [.4, .6],
+        2: [.25, .5, .75]
+    }
+
+    # group and concatenate TS by label
+    for label, df_group in df.groupby("class_val"):
+        label_ts = np.concatenate(df_group["dim_0"].apply(zscore).to_numpy())
+
+        if label_cut == 0:
+            X_concat.append(label_ts)
+            y_concat.append(label)
+            continue
+
+        np.random.seed(label_ts.shape[0])
+
+        segment_borders = np.concatenate((
+            [0],
+            np.asarray(np.sort(np.random.choice(segment_splits[label_cut], label_cut, replace=False)) * time_series.shape[0],np.int64),
+            [label_ts.shape[0]]
+        ))
+
+        for idx in range(1, len(segment_borders)):
+            X_concat.append(label_ts[segment_borders[idx - 1]:segment_borders[idx]])
+            y_concat.append(label)
+
+    # reduce TS to relevant labels
+    X_seg = np.array(X_concat, dtype=np.object)[labels]
+
+    # resample TS
+    X_seg = dp.map(lambda seg: dp.windowed(seg, resample_rate, step=resample_rate, ret_type=list), X_seg, ret_type=list, expand_args=False)
+    X_seg = dp.map(lambda seg: np.mean(seg, axis=1), X_seg, ret_type=list, expand_args=False)
+
+    # create CP offsets
+    y_seg = dp.map(len, X_seg, ret_type=list, expand_args=False)
+
+    # create final TS and offsets
+    ts = np.concatenate(X_seg)
+    cps = np.cumsum(y_seg)[:-1]
+
+    return ts, cps
 
 
 def load_time_series_segmentation_datasets(names=None):
