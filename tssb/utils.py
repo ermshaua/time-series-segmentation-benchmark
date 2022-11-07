@@ -51,7 +51,7 @@ def generate_time_series_segmentation_dataset(df, labels, resample_rate=1, label
 
         segment_borders = np.concatenate((
             [0],
-            np.asarray(np.sort(np.random.choice(segment_splits[label_cut], label_cut, replace=False)) * time_series.shape[0],np.int64),
+            np.asarray(np.sort(np.random.choice(segment_splits[label_cut], label_cut, replace=False)) * label_ts.shape[0],np.int64),
             [label_ts.shape[0]]
         ))
 
