@@ -32,13 +32,13 @@ We have evaluated 7 time series segmentation algorithms using the TSSB. The foll
 
 | Segmentation Algorithm | Mean Accuracy | Mean Rank | Wins & Ties |
 |------------------------|---------------| --------- |-------------
-| ClaSP                  |  85.47             | 1.5       | 54/75         |
-| BinSeg                 |  57.49             | 2.8       | 12/75         |
-| PELT                   |  58.1             | 2.9       | 12/75         |
-| FLOSS                  |  56.74             | 3.1       | 12/75         |
-| Window                 |  40.1             | 4.3       | 7/75         |
-| BOCD                   |  44.88             | 4.3       | 6/75         |
-| ESPRESSO               |  44.36             | 4.6       | 4/75         |
+| ClaSP                  |  85.47%             | 1.5       | 54/75         |
+| BinSeg                 |  57.49$             | 2.8       | 12/75         |
+| PELT                   |  58.1%             | 2.9       | 12/75         |
+| FLOSS                  |  56.74%             | 3.1       | 12/75         |
+| Window                 |  40.1%             | 4.3       | 7/75         |
+| BOCD                   |  44.88%             | 4.3       | 6/75         |
+| ESPRESSO               |  44.36%             | 4.6       | 4/75         |
 
 The mean ranks are visualized in the followind critical difference (CD) diagram. Not significantly different algorithms are connected with a horizontal bar based
 on a Nemenyi two tailed significance test with a = 0.05.
