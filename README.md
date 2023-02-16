@@ -41,13 +41,12 @@ We have evaluated 7 time series segmentation algorithms using the TSSB. The foll
 | ESPRESSO               |  44.36%             | 4.6       | 4/75         |
 
 The mean ranks are visualized in the followind critical difference (CD) diagram. Not significantly different algorithms are connected with a horizontal bar based
-on a Nemenyi two tailed significance test with a = 0.05.
+on a Nemenyi two tailed significance test with a = 0.05. The boxplot illustrates the summary statistics.
 
-![image](tssb/ranks.png)
-
-The following boxplot illustrates the summary statistics.
-
-![image](tssb/boxplot.png)
+<p float="left">
+  <img src="tssb/ranks.png" width="300" />
+  <img src="tssb/boxplot.png" width="300" />
+</p>
 
 ## Basic Usage
 Let's first import methods to load TS from the benchmark and to evaluate TSS algorithms. As an example, we also import our segmentation algorithm ClaSP from <a target="_blank" href="https://github.com/alan-turing-institute/sktime/">sktime</a>. 
