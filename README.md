@@ -56,7 +56,7 @@ Let's first import methods to load TS from the benchmark and to evaluate TSS alg
 >>> from sktime.annotation.clasp import ClaSPSegmentation
 ```
 
-We can now load the entire benchmark (66 TS) as a pandas dataframe using 
+We can now load the entire benchmark (75 TS) as a pandas dataframe using 
 
 ```python3
 >>> tssb = load_time_series_segmentation_datasets()
