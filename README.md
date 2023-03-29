@@ -28,7 +28,7 @@ If you use the TSSB in your scientific publication, we would appreciate the foll
 
 ## Results
 
-We have evaluated 7 time series segmentation algorithms using the TSSB. The following table summarises the average segmentation Covering (higher is better) and the corresponding mean ranks. Evaluation details are in the <a target="_blank" href="https://arxiv.org/pdf/2207.13987.pdf">paper</a>. The raw result sheet and an evaluation notebook are in the <a target="_blank" href="https://github.com/ermshaua/time-series-segmentation-benchmark/tree/main/tssb/notebooks">notebooks</a> folder.
+We have evaluated 7 time series segmentation algorithms using the TSSB. The following table summarises the average segmentation Covering (higher is better) and the corresponding mean ranks. Evaluation details are in the <a target="_blank" href="https://doi.org/10.1007/s10618-023-00923-x">paper</a>. The raw result sheet and an evaluation notebook are in the <a target="_blank" href="https://github.com/ermshaua/time-series-segmentation-benchmark/tree/main/tssb/notebooks">notebooks</a> folder.
 
 | Segmentation Algorithm | Mean Accuracy | Mean Rank | Wins & Ties |
 |------------------------|---------------| --------- |-------------
