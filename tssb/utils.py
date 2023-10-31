@@ -1,4 +1,5 @@
 import os
+
 ABS_PATH = os.path.dirname(os.path.abspath(__file__))
 
 import numpy as np
@@ -11,15 +12,15 @@ sns.set_theme()
 sns.set_color_codes()
 
 from scipy.stats import zscore
-from sklearn.metrics.pairwise import paired_euclidean_distances
 
 
-def generate_time_series_segmentation_dataset(df, labels, resample_rate=1, label_cut=0):
+def generate_time_series_segmentation_dataset(X, y, labels, resample_rate=1, label_cut=0):
     '''
     Generates a TSSB dataset from a sktime dataframe (with cols "dim_0" and "class_val").
     Parameters
     -----------
-    :param df: sktime dataset dataframe (must contain dim_0 and class_val cols)
+    :param X: 1d time series data
+    :param y: target variables (classes)
     :param labels: a list of (potentially cut) labels used to create the dataset (determines the segment order)
     :param resample_rate: the number of data points that are mean-aggregated (controls the TS resolution)
     :param label_cut: the number of cuts for a label (enables the use of sub-segments, possible values: 0, 1, 2)
@@ -27,11 +28,15 @@ def generate_time_series_segmentation_dataset(df, labels, resample_rate=1, label
     :return: a tuple of TS and a CP np.array
     Examples
     -----------
-    >>> from sktime.datasets import load_from_ucr_tsv_to_dataframe
-    >>> df = load_from_ucr_tsv_to_dataframe(os.path.join(DATA_PATH, "ArrowHead/ArrowHead_TRAIN.tsv"), return_separate_X_and_y=False)
+    >>> from aeon.datasets import load_from_tsv_file
+    >>> df = load_from_tsv_file(os.path.join(DATA_PATH, "ArrowHead/ArrowHead_TRAIN.tsv"))
     >>> ts, cps = generate_time_series_segmentation_dataset(df, labels=[0,1], resample_rate=2)
     '''
     X_concat, y_concat = [], []
+
+    df = pd.DataFrame()
+    df["dim_0"] = [pd.Series(ts[0]) for ts in X]
+    df["class_val"] = y
 
     segment_splits = {
         1: [.4, .6],
@@ -51,7 +56,9 @@ def generate_time_series_segmentation_dataset(df, labels, resample_rate=1, label
 
         segment_borders = np.concatenate((
             [0],
-            np.asarray(np.sort(np.random.choice(segment_splits[label_cut], label_cut, replace=False)) * label_ts.shape[0],np.int64),
+            np.asarray(
+                np.sort(np.random.choice(segment_splits[label_cut], label_cut, replace=False)) * label_ts.shape[0],
+                np.int64),
             [label_ts.shape[0]]
         ))
 
@@ -63,7 +70,8 @@ def generate_time_series_segmentation_dataset(df, labels, resample_rate=1, label
     X_seg = np.array(X_concat, dtype=np.object)[labels]
 
     # resample TS
-    X_seg = dp.map(lambda seg: dp.windowed(seg, resample_rate, step=resample_rate, ret_type=list), X_seg, ret_type=list, expand_args=False)
+    X_seg = dp.map(lambda seg: dp.windowed(seg, resample_rate, step=resample_rate, ret_type=list), X_seg, ret_type=list,
+                   expand_args=False)
     X_seg = dp.map(lambda seg: np.mean(seg, axis=1), X_seg, ret_type=list, expand_args=False)
 
     # create CP offsets

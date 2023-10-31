@@ -1,3 +1,4 @@
+aeon
 daproli
 matplotlib
 numpy
@@ -5,5 +6,6 @@ orange3
 pandas
 scikit-learn
 seaborn
+scipy
 tqdm
 setuptools
