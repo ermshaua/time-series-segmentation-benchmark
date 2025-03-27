@@ -11,7 +11,7 @@ setup(name='tssb',
       packages=find_packages(exclude=['tests', 'examples']),
       package_data={'': ['LICENSE']},
       include_package_data=True,
-      install_requires=np.loadtxt(fname='requirements.txt', delimiter='\n', dtype=np.str).tolist(),
+      install_requires=np.loadtxt(fname='requirements.txt', delimiter='\n', dtype=str).tolist(),
       long_description=open('README.md').read(),
       long_description_content_type="text/markdown",
       zip_safe=False)
