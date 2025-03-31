@@ -154,9 +154,9 @@ def visualize_time_series(ts, ts_name=None, cps_true=None, cps_pred=None, fontsi
         ax.legend(prop={'size': fontsize})
 
     for tick in ax.xaxis.get_major_ticks():
-        tick.label.set_fontsize(fontsize)
+        tick.label1.set_fontsize(fontsize)
 
     for tick in ax.yaxis.get_major_ticks():
-        tick.label.set_fontsize(fontsize)
+        tick.label1.set_fontsize(fontsize)
 
     return fig, ax
